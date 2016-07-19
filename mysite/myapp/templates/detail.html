@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+<h1>{{ book.name }}</h1>
+<ul>
+    # {{book.id}}
+
+<li>Автор: {% for all in book.author.all %}
+            {{all.name}} {{all.surname}}
+            {%endfor%}
+</li>
+
+    Издательство: {% for all in book.publisher.all %}
+    {{ all.name }}
+    {% endfor %}
+
+<li>Год: {{book.year}}</li>
+<li>Объем: {{book.pages}}</li>
+</ul>
+
+
+{% endblock %}
+

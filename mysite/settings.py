@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mysite.myapp',
     'bootstrap3',
+    #'csvimport',
 ]
 
 MIDDLEWARE_CLASSES = [

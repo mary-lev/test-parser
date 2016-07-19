@@ -18,7 +18,7 @@ class AuthorshipAdmin(admin.ModelAdmin):
     pass
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['isbn', 'get_author', 'name', 'year', 'get_publisher', 'pages', 'exem']
+    list_display = ['get_author', 'name', 'year', 'get_publisher', 'pages', 'exem', 'isbn']
     inlines = [AuthorshipInline, PrintingsInline]
     #def publisher_name(self, instance):
     #    return instance.publisher.name
