@@ -7,12 +7,12 @@ class Publisher(models.Model):
         return self.name
 
 class Author(models.Model):
-    surname = models.CharField(max_length=30, null=True, blank=True)
+    surname = models.CharField(max_length=30)
     middle_name = models.CharField(max_length=30, null=True, blank=True)
     name = models.CharField(max_length=20, null=True, blank=True)
     san = models.CharField(max_length=20, null=True, blank=True)
     def __str__(self):
-        return self.name
+        return self.surname
 
 class Book(models.Model):
     author = models.ManyToManyField(Author, through='Authorship', null=True, blank=True)
@@ -27,6 +27,7 @@ class Book(models.Model):
     bbk = models.CharField(max_length=200, null=True, blank=True)
     topics = models.CharField(max_length=500, null=True, blank=True)
     exem = models.IntegerField(null=True, blank=True)
+    full = models.CharField(max_length=1000)
     def __str__(self):
         return self.name
 
