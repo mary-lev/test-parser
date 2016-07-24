@@ -1,0 +1,11 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>Издательства России</h3>
+    <ul>
+    {% for p in all_publishers %}
+        <li><a href="/myapp/{{ p.id }}/results/">{{ p.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

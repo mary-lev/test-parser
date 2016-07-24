@@ -30,7 +30,7 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation" class="active"><a href="http://bookparser.pythonanywhere.com/">Home</a></li>
             <li role="presentation"><a href="#">About</a></li>
             <li role="presentation"><a href="#">Contact</a></li>
           </ul>
@@ -40,8 +40,38 @@
 
       <div class="jumbotron">
         <h1>Bookchamber parser</h1>
-
+        <p>Книгоиздание России в 2005–2014 гг.<br> по версии Книжной палаты РФ: статистика</p>
              </div>
+
+    <div class="row marketing">
+        <div class="col-lg-6">
+          <h4><a href="http://bookparser.pythonanywhere.com/myapp/publishers.html">Издательства</a></h4>
+          <p>Алфавитный указатель и статистика выход книг в издательствах России.
+          <a href='myapp/most_publishers.html'>Самые активные издательства России (по количеству выпущенных книг).</a></p>
+
+          <h4><a href='http://bookparser.pythonanywhere.com/myapp/cities.html'>География</a></h4>
+          <p>Города и деревни России: где выпускают больше книг?</p>
+
+          <h4><a href='/myapp/search_isbn.html'>ISBN</a></h4>
+          <p>Поиск книги по ISBN.</p>
+
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Тематика</h4>
+          <p>УДК, ББК и тематическая роспись Книжной палаты.</p>
+
+          <h4>Топ-100: статистика</h4>
+          <p><a href='/myapp/most_printing.html'>Самые тиражные книги</a>.
+          <a href='myapp/most_pages.html'>Самые толстые книги.</a>
+          <a href='myapp/most_authors.html'>Самые издаваемые авторы.</a></p>
+
+          <h4><a href="http://bookparser.pythonanywhere.com/myapp/authors.html">Авторы</a></h4>
+          <p>Список авторов книг, выпущенных в России.</p>
+        </div>
+      </div>
+
+
     <div class='row-base'>
         <div class="col-md-8">
             <p> {% block body_block %}
@@ -51,34 +81,12 @@
 
         </div>
     </div>
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Издательства</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
-          <h4>География</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Тематика</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="col-lg-6">
-          <h4>ISBN</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Организации</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Хронология</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-      </div>
 
 
 
 <footer class="footer">
-        <p>&copy; 2015 Company, Inc.</p>
+        <p>&copy; 2016 Concordances.Ru.</p>
       </footer>
 
     </div> <!-- /container -->

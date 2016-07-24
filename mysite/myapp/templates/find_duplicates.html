@@ -1,0 +1,20 @@
+{% extends 'foot.html' %}
+{% block body_block %}
+<h3>ISBN {{isbn}}</h3>
+
+{% for book in books %}
+
+<h1>{{ book.name }}</h1>
+<ul>
+    # {{book.id}}
+
+    Издательство: {% for all in book.publisher.all %}
+    <li><a href="/myapp/{{ all.id }}/results/">{{ all.name }}</a></li>
+<li>    Город: {{all.city}}</li>
+    {% endfor %}
+<li>ISBN: {{book.isbn}}</li>
+<li>Full: {{book.full}}</li>
+</ul>
+{% endfor %}
+
+{% endblock %}

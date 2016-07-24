@@ -20,21 +20,46 @@ with open(filename, 'rb') as csvfile:
     for row in tablereader:
         print row['isbn'], row['title']
 
+        #test null printing
+        if not row['printing']:
+            exem =0
+        else:
+            exem = row['printing']
+
         cursor.execute("INSERT INTO myapp_book "
             "(name, bbk, year, pages, tom, isbn, udk, topics, exem, full) "
-            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",  ((row['title'], row['bbk'], row['year'],row['page'], row['tom'], row['isbn'],  row['udk'],  row['topics'], int(row['printing']), row['text'], )))
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",  ((row['title'], row['bbk'], row['year'],row['page'], row['tom'], row['isbn'],  row['udk'],  row['topics'], exem, row['text'], )))
         book_id = cursor.lastrowid
 
-        #find publisher
-        cursor.execute("SELECT id, name FROM myapp_publisher WHERE name = %s", (row['publisher'],) )
-        try:
-            publisher_id = cursor.fetchone()[0]
-        except:
-            cursor.execute("INSERT INTO myapp_publisher "
-               "(name, city) "
-               "VALUES (%s, %s)", ((row['publisher'], row['city'])))
-            publisher_id = cursor.lastrowid
-        cursor.execute("INSERT INTO myapp_printings (publisher_id, book_id) VALUES (%s, %s)", ((publisher_id, book_id)))
+        #find and count publishers
+        if ':' in row['publisher']:
+            publishers = row['publisher'].split(':')
+            print publishers
+            if ';' in row['city']:
+                city = ''
+            else:
+                city = row['city']
+            for all in publishers:
+                cursor.execute("SELECT id, name FROM myapp_publisher WHERE name = %s", (all,) )
+                two = cursor.fetchone()
+                if two:
+                    publisher_id = two[0]
+                else:
+                    cursor.execute("INSERT INTO myapp_publisher (name, city) VALUES (%s, %s)", ((all, city)))
+                    publisher_id = cursor.lastrowid
+                cursor.execute("INSERT INTO myapp_printings (publisher_id, book_id) VALUES (%s, %s)", ((publisher_id, book_id)))
+        else:
+            one = (row['publisher'], row['city'])
+            cursor.execute("SELECT id, name, city FROM myapp_publisher WHERE name = %s", (row['publisher'],) )
+            r = cursor.fetchone()
+            if r:
+                publisher_id = r[0]
+                if not r[2]:
+                    cursor.execute("UPDATE myapp_publisher SET city=%s WHERE id = %s", (row['city'], publisher_id) )
+            else:
+                cursor.execute("INSERT INTO myapp_publisher (name, city) VALUES (%s, %s)", (one))
+                publisher_id = cursor.lastrowid
+            cursor.execute("INSERT INTO myapp_printings (publisher_id, book_id) VALUES (%s, %s)", ((publisher_id, book_id)))
 
         #find author
         if row['author'] != 'None':

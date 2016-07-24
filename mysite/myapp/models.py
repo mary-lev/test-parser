@@ -1,13 +1,14 @@
 from django.db import models
 
 class Publisher(models.Model):
-    city = models.CharField(max_length=50)
+    city = models.CharField(max_length=50, null=True, blank=True)
     name = models.CharField(max_length=500)
+
     def __str__(self):
         return self.name
 
 class Author(models.Model):
-    surname = models.CharField(max_length=30)
+    surname = models.CharField(max_length=500)
     middle_name = models.CharField(max_length=30, null=True, blank=True)
     name = models.CharField(max_length=20, null=True, blank=True)
     san = models.CharField(max_length=20, null=True, blank=True)
@@ -20,14 +21,14 @@ class Book(models.Model):
     name = models.CharField(max_length=500)
     year = models.CharField(max_length=4)
     pages = models.IntegerField(null=True,blank=True)
-    tom = models.CharField(max_length=10, null=True, blank = True)
+    tom = models.CharField(max_length=20, null=True, blank = True)
     tom_number = models.CharField(max_length=10, null = True, blank=True)
-    isbn = models.CharField(max_length=20, null=True, blank=True)
+    isbn = models.CharField(max_length=25, null=True, blank=True)
     udk = models.CharField(max_length=200, null=True, blank=True)
     bbk = models.CharField(max_length=200, null=True, blank=True)
     topics = models.CharField(max_length=500, null=True, blank=True)
     exem = models.IntegerField(null=True, blank=True)
-    full = models.CharField(max_length=1000)
+    full = models.CharField(max_length=2000)
     def __str__(self):
         return self.name
 

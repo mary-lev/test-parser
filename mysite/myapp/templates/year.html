@@ -1,0 +1,14 @@
+{% extends 'foot.html' %}
+{% block body_block %}
+
+<h1>{{ one_year }}</h1>
+
+
+<ul>Книги: {% for b in books %}
+           <li><a href="/myapp/{{ b.id }}/">{{b.name}}</a></li>
+
+            {%endfor%}
+</ul>
+
+
+{% endblock %}

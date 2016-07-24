@@ -1,0 +1,13 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>Самые активные авторы:</h3>
+    <ul>
+   {% for all in all_books%}
+<li><a href='/myapp/{{all.id}}/author'>{{all.surname}}</a>: {{all.count_author}}</li>
+{% endfor %}
+
+
+    </ul>
+
+{% endblock %}

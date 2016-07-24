@@ -1,0 +1,10 @@
+{% extends 'foot.html' %}
+{% block body_block %}
+
+<h3>Поиск по ISBN</h3>
+<form action="/myapp/find_isbn/" method="get" >
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}

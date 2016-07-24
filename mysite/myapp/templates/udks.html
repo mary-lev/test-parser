@@ -1,0 +1,11 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>УДК</h3>
+    <ul>
+    {% for all in all_udk%}
+   <li> <a href='/myapp/{{all}}/udk'>{{all}}</a></li>
+{% endfor %}
+    </ul>
+
+{% endblock %}

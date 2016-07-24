@@ -1,0 +1,11 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>Авторы</h3>
+    <ul>
+    {% for all in all_authors %}
+        <li><a href="/myapp/{{ all.id }}/author/">{{ all.surname }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

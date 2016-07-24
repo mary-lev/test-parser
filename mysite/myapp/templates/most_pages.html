@@ -1,0 +1,18 @@
+{% extends 'foot.html' %}
+{% block body_block %}
+
+<h1>Самые толстые книги</h1>
+
+
+<ul> {% for b in books.all %}
+           <li><a href="/myapp/{{ b.id }}/">{{b.name}}</a>.
+                    {% for p in b.author.all %}
+                        {{p.surname}}
+                    {%endfor%}
+           ({{b.year}}).<b> {{b.pages}} </b> </li>
+
+            {%endfor%}
+</ul>
+
+
+{% endblock %}

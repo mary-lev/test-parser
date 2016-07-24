@@ -18,7 +18,7 @@ class AuthorshipAdmin(admin.ModelAdmin):
     pass
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['get_author', 'name', 'year', 'get_publisher', 'pages', 'exem', 'isbn', 'full']
+    list_display = ['name', 'get_author', 'year', 'get_publisher', 'pages', 'exem', 'isbn', 'bbk', 'udk', 'full']
     inlines = [AuthorshipInline, PrintingsInline]
     #def publisher_name(self, instance):
     #    return instance.publisher.name
@@ -28,7 +28,7 @@ class BookAdmin(admin.ModelAdmin):
         return "\n".join([' '.join([str(p.surname)]) for p in obj.author.all()])
 
 class PublisherAdmin(admin.ModelAdmin):
-    list_display = ['name', 'city']
+    list_display = ['id', 'name', 'city']
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ['surname']

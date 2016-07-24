@@ -1,0 +1,13 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>Города</h3>
+    <ul>
+    {% for key, value in count_cities%}
+   <li> <a href='/myapp/{{key}}/city'>{{key}}</a>: {{value}} </li>
+{% endfor %}
+
+
+    </ul>
+
+{% endblock %}
