@@ -65,11 +65,9 @@ def author(request, author_id):
     return render( request, template, context )
 
 def cities(request):
-    all_cities1 = Printings.objects.all()
-    all_cities = [all.publisher.city for all in all_cities1]
-    count_cities = Counter(all_cities).most_common()
+    all_cities = Publisher.objects.all().values('city').annotate(count_books=Count('book')).order_by('-count_books')
     template = 'cities.html'
-    context = { 'count_cities': count_cities,   }
+    context = { 'count_cities': all_cities,   }
     return render( request, template, context )
 
 def city(request, city_name):
@@ -81,12 +79,9 @@ def city(request, city_name):
     return render( request, template, context )
 
 def years(request):
-    all_years = [all.year for all in Book.objects.all()]
-    c = Counter(all_years)
-    count_years = c.most_common()
-    c = sorted(c.items(), key=lambda i: i[0], reverse=True)
+    all_years = Book.objects.all().values('year').annotate(count_years=Count('year')).order_by('-count_years')
     template = 'years.html'
-    context = { 'count_years': count_years, 'c': c }
+    context = { 'count_years': all_years }
     return render( request, template, context )
 
 def year(request, one_year):

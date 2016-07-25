@@ -3,16 +3,8 @@
 {% block body_block %}
 <h3>По годам</h3>
     <ul>
-    {% for key, value in count_years%}
-   <li> <a href='/myapp/{{key}}/year'>{{key}}</a>: {{value}} </li>
+    {% for all in count_years%}
+   <li> <a href='/myapp/{{all.year}}/year'>{{all.year}}</a>: {{all.count_years}} </li>
 {% endfor %}
     </ul>
-
-    <h3>По годам</h3>
-    <ul>
-    {% for key, value in c%}
-   <li> {{key}}: {{value}} </li>
-{% endfor %}
-    </ul>
-
 {% endblock %}
