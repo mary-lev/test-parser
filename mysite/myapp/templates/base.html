@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bookchamber parser</title>
+    <title>Книг России: 2005-2014</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
             <li role="presentation"><a href="#">Contact</a></li>
           </ul>
         </nav>
-        <h3 class="text-muted">Bookchamber parser</h3>
+        <h3 class="text-muted">Книги России с 2005 по 2014 гг.</h3>
       </div>
 
       <div class="jumbotron">
@@ -47,38 +47,40 @@
         <div class="col-lg-6">
           <h4><a href="http://bookparser.pythonanywhere.com/myapp/publishers.html">Издательства</a></h4>
           <p>Алфавитный указатель и статистика выход книг в издательствах России.
-          <a href='myapp/most_publishers.html'>Самые активные издательства России (по количеству выпущенных книг).</a></p>
+         </p>
 
           <h4><a href='http://bookparser.pythonanywhere.com/myapp/cities.html'>География</a></h4>
-          <p>Города и деревни России: где выпускают больше книг?</p>
+          <p>Города и деревни России: где выпускают больше книг?  <a href='/myapp/all_cities.html'>Издательства по городам России.</a></p>
 
-          <h4><a href='/myapp/search_isbn.html'>ISBN</a></h4>
-          <p>Поиск книги по ISBN.</p>
+          <h4><a href="http://bookparser.pythonanywhere.com/myapp/authors.html">Авторы</a></h4>
+          <p>Список авторов книг, выпущенных в России. <a href='myapp/most_authors.html'>Самые издаваемые авторы.</a></p>
+
+
 
         </div>
 
         <div class="col-lg-6">
           <h4>Тематика</h4>
-          <p>УДК, ББК и тематическая роспись Книжной палаты. <a href='myapp/years.html'>Хронология.</a></p>
+          <p><a href='/myapp/udks.html'>УДК</a>, <a href='/myapp/bbks.html'>ББК</a> и тематическая роспись Книжной палаты.
+          </p>
 
           <h4>Топ-100: статистика</h4>
           <p><a href='/myapp/most_printing.html'>Самые тиражные книги</a>.
           <a href='myapp/most_pages.html'>Самые толстые книги.</a>
-          <a href='myapp/most_authors.html'>Самые издаваемые авторы.</a></p>
+          <a href='myapp/most_publishers.html'>Самые активные издательства России (по количеству выпущенных книг).</a>
+          <a href='myapp/years.html'>Хронология.</a></p>
 
-          <h4><a href="http://bookparser.pythonanywhere.com/myapp/authors.html">Авторы</a></h4>
-          <p>Список авторов книг, выпущенных в России.</p>
+          <h4><a href='/myapp/search_isbn.html'>ISBN</a></h4>
+          <p>Поиск книги по ISBN.</p>
+
         </div>
       </div>
 
 
     <div class='row-base'>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <p> {% block body_block %}
             {% endblock %}</p>
-        </div>
-        <div class="col-md-4">
-
         </div>
     </div>
 

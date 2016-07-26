@@ -1,7 +1,5 @@
 #from django.db import models
 import mysql.connector
-import csv
-import sys
 
 config = {
   'user': 'bookparser',
@@ -18,9 +16,10 @@ cursor.execute("SELECT id, udk FROM myapp_book")
 udks = cursor.fetchall()
 for all in udks:
     print all[0], all[1]
-    cursor.execute("UPDATE myapp_book SET udk=%s WHERE id=%s", ((all[1][4:], all[0])))
+    new_udk = all[1].replace('[', '')
+    print new_udk
+    cursor.execute("UPDATE myapp_book SET udk=%s WHERE id=%s", ((new_udk, all[0])))
     cnx.commit()
-    print all[1][4:]
 
 cursor.close()
 

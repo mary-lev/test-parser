@@ -1,0 +1,12 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>ББК</h3>
+    <ul>
+    {% for all in all_bbk%}
+            <li> <a href='/myapp/{{all.bbk}}/bbk'>{{all.bbk}}: {{all.count_bbk}}</a></li>
+
+    {% endfor %}
+    </ul>
+
+{% endblock %}

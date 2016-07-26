@@ -1,0 +1,13 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>Издательства в {{one_city}}</h3>
+    <ul>
+    {% for all in publishers%}
+   <li> <a href='/myapp/{{all.id}}/results'>{{all.name}}</a></li>
+{% endfor %}
+
+
+    </ul>
+
+{% endblock %}
