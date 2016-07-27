@@ -162,11 +162,12 @@ def most_printing(request):
     template = 'most_printing.html'
     return render(request, template, {'books': books[:100]} )
 
-# список всех издательств
+# список всех городов
 def all_cities(request):
     cities = Publisher.objects.all().values('city').order_by('city').distinct()
     return render( request, 'all_cities.html', { 'cities': cities, }, )
 
+# издательства в одном городе
 def city_publishers(request, one_city):
-    publishers = Publisher.objects.filter(city=one_city)
+    publishers = Publisher.objects.filter(city=one_city).order_by('name')
     return render( request, 'city_publishers.html', {'publishers': publishers, 'one_city': one_city}, )

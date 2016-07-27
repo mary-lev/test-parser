@@ -11,6 +11,7 @@ class PrintingsInline(admin.TabularInline):
 
 class PrintingsAdmin(admin.ModelAdmin):
     model = PrintingsInline
+    ordering = ('publisher',)
     pass
 
 class AuthorshipAdmin(admin.ModelAdmin):
@@ -18,10 +19,11 @@ class AuthorshipAdmin(admin.ModelAdmin):
     pass
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['name', 'get_author', 'year', 'get_publisher', 'pages', 'exem', 'isbn', 'bbk', 'udk', 'full']
+    list_display = ['id', 'name', 'get_author', 'year', 'get_publisher', 'pages', 'exem', 'isbn', 'bbk', 'udk', 'full']
     inlines = [AuthorshipInline, PrintingsInline]
     #def publisher_name(self, instance):
     #    return instance.publisher.name
+    search_fields = ('name', 'isbn')
     def get_publisher(self, obj):
         return "\n".join([p.name for p in obj.publisher.all()])
     def get_author(self, obj):
@@ -29,9 +31,11 @@ class BookAdmin(admin.ModelAdmin):
 
 class PublisherAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'city']
+    ordering = ('name',)
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ['surname']
+    ordering = ('surname',)
 
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(Book, BookAdmin)
