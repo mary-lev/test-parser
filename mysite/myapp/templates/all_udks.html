@@ -1,0 +1,12 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>УДК</h3>
+    <ul>
+        {% for key, v in data1.items %}
+        <li><a href="/myapp/{{key}}/udk">{{key}}</a>: {{v}}</li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}

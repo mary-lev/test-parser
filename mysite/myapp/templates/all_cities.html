@@ -4,7 +4,7 @@
 <h3>Издательства по городам:</h3>
     <ul>
     {% for all in cities%}
-   <li> <a href='/myapp/{{all.city}}/city_publishers'>{{all.city}}</a></li>
+   <li> <a href='/myapp/{{all.city}}/city_publishers'>{{all.city}}: {{all.count_books}}</a></li>
 {% endfor %}
 
 

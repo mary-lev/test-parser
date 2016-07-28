@@ -1,0 +1,12 @@
+{% extends 'foot.html' %}
+
+{% block body_block %}
+<h3>УДК</h3>
+    <ul>
+    {% for key, v in ludks%}
+            <li> {{key}}: {{v}}</li>
+
+    {% endfor %}
+    </ul>
+
+{% endblock %}

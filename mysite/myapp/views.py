@@ -3,11 +3,12 @@ from django.template import RequestContext, loader
 #from django.http import HttpResponse
 #from django.views.generic import DetailView
 from mysite.myapp.models import Book, Publisher, Author, Authorship, Printings
-from collections import Counter
+from collections import Counter, OrderedDict
 from django import forms
 from django.db.models import Q
 from mysite.myapp.forms import SearchIsbn
 from django.db.models import Count
+import json
 
 def index(request):
     all_books = Book.objects.order_by('name')[:10]
@@ -107,12 +108,6 @@ def udks(request):
     context = { 'all_udk': all_udk, }
     return render( request, 'udks.html', context )
 
-# список всех книг по одному удк
-def udk(request, one_udk):
-    all_books = Book.objects.filter(udk=one_udk)
-    context =  RequestContext(request, { 'all_books': all_books, 'one_udk' : one_udk })
-    return render( request, 'udk.html', context )
-
 # список всех ббк
 def bbks(request):
     all_bbk = Book.objects.all().values('bbk').annotate(count_bbk=Count('bbk')).order_by('bbk')
@@ -164,10 +159,28 @@ def most_printing(request):
 
 # список всех городов
 def all_cities(request):
-    cities = Publisher.objects.all().values('city').order_by('city').distinct()
+    cities = Publisher.objects.all().values('city').order_by('city').distinct().annotate(count_books=Count('id'))
     return render( request, 'all_cities.html', { 'cities': cities, }, )
 
 # издательства в одном городе
 def city_publishers(request, one_city):
     publishers = Publisher.objects.filter(city=one_city).order_by('name')
     return render( request, 'city_publishers.html', {'publishers': publishers, 'one_city': one_city}, )
+
+def all_udks(request):
+    t = open('/home/bookparser/mysite/mysite/myapp/udks.json', 'r')
+    f = t.read()
+    data1 = json.loads(f)
+    od = OrderedDict(sorted(data1.items()))
+    return render( request, 'all_udks.html', {'data1': od}, )
+
+# список всех книг по одному удк
+def udk(request, one_udk):
+    t = open('/home/bookparser/mysite/mysite/myapp/udks.json', 'r')
+    f = t.read()
+    data1 = json.loads(f)
+    v = data1[one_udk]
+    one_udk1 = '[' + one_udk
+    all_books = Book.objects.filter(Q(udk__startswith=one_udk) | Q(udk__startswith=one_udk1)).order_by('name')
+    context =  RequestContext(request, { 'all_books': all_books, 'one_udk' : one_udk, 'v': v })
+    return render( request, 'udk.html', context )
