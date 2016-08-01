@@ -1,0 +1,33 @@
+{% extends 'ajax.html' %}
+
+{% block body_block %}
+<h3>УДК из списка</h3>
+<ul>
+    {% for all in udk %}
+        {% if all.find_level != 'None' %}
+            <li class = "{{all.find_level}}">{{all.text}} {{all.find_level}}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<ul>
+{% for key, v in test.items %}
+        <div class="test">
+        <li><b>{{key}}</b></li>
+        </div>
+            <div class="content_p">
+            <ul>
+            {% for a, b in v.items %}
+                <li>{{a}}</li>
+                    <ul>
+                        {% for bb in b %}
+                        <li>{{bb}}</li>
+                        {% endfor %}
+                    </ul>
+            {% endfor %}
+            </ul>
+            </div>
+{% endfor %}
+</ul>
+
+{{test}}
+{% endblock %}

@@ -4,7 +4,7 @@
 <h3>УДК</h3>
     <ul>
     {% for all in all_udk%}
-            <li> <a href='/myapp/{{all}}/udk'>{{all.udk}}: {{all.count_udk}}</a></li>
+            <li> <a href='/myapp/{{all.udk}}/udk'>{{all.udk}}: {{all.count_udk}}</a></li>
 
     {% endfor %}
     </ul>

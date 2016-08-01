@@ -1,6 +1,7 @@
 {% extends 'foot.html' %}
 {% block body_block %}
 
+{% if all_books %}
 <h1>УДК {{ one_udk }}. {{v}}</h1>
 
 <ul>Книги: {% if all_books %}
@@ -11,5 +12,5 @@
             {% else %}
                 Книжек не нашли.
             {% endif %}
-
+{% endif %}
 {% endblock %}

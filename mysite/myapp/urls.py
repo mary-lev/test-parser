@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from mysite.myapp import views
+from mysite.myapp import views, udk_views
 #from mysite.myapp.views import BookListView
 
 urlpatterns = patterns('',
@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^find_isbn', views.find_isbn, name='find_isbn'),
     url(r'^find_duplicates', views.find_duplicates, name='find_duplicates'),
     url(r'^all_udks', views.all_udks, name='all_udks'),
+    url(r'^try_udk', udk_views.try_udk, name='try_udk'),
     # book
     url(r'^(?P<book_id>\d+)/$', views.detail, name='detail'),
     # publisher: ex: /polls/5/results/

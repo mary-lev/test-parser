@@ -102,12 +102,6 @@ def year(request, one_year):
     template = 'year.html'
     return render( request, template, context )
 
-# список всех удк
-def udks(request):
-    all_udk = Book.objects.all().values('udk').annotate(count_udk=Count('udk')).order_by('udk')
-    context = { 'all_udk': all_udk, }
-    return render( request, 'udks.html', context )
-
 # список всех ббк
 def bbks(request):
     all_bbk = Book.objects.all().values('bbk').annotate(count_bbk=Count('bbk')).order_by('bbk')
@@ -167,6 +161,7 @@ def city_publishers(request, one_city):
     publishers = Publisher.objects.filter(city=one_city).order_by('name')
     return render( request, 'city_publishers.html', {'publishers': publishers, 'one_city': one_city}, )
 
+#список всех удк из руководства
 def all_udks(request):
     t = open('/home/bookparser/mysite/mysite/myapp/udks.json', 'r')
     f = t.read()
@@ -174,13 +169,22 @@ def all_udks(request):
     od = OrderedDict(sorted(data1.items()))
     return render( request, 'all_udks.html', {'data1': od}, )
 
+# список всех удк
+def udks(request):
+    all_udk = Book.objects.all().values('udk').annotate(count_udk=Count('udk')).order_by('udk')
+    context = { 'all_udk': all_udk, }
+    return render( request, 'udks.html', context )
+
 # список всех книг по одному удк
 def udk(request, one_udk):
     t = open('/home/bookparser/mysite/mysite/myapp/udks.json', 'r')
     f = t.read()
     data1 = json.loads(f)
-    v = data1[one_udk]
-    one_udk1 = '[' + one_udk
-    all_books = Book.objects.filter(Q(udk__startswith=one_udk) | Q(udk__startswith=one_udk1)).order_by('name')
-    context =  RequestContext(request, { 'all_books': all_books, 'one_udk' : one_udk, 'v': v })
+    try:
+        v = data1[one_udk]
+        one_udk1 = '[' + one_udk
+        all_books = Book.objects.filter(Q(udk__startswith=one_udk) | Q(udk__startswith=one_udk1)).order_by('name')
+        context =  RequestContext(request, { 'all_books': all_books, 'one_udk' : one_udk, 'v': v })
+    except:
+        context =  RequestContext(request, { 'one_udk': None, })
     return render( request, 'udk.html', context )
