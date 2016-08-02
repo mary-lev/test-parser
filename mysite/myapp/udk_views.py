@@ -9,6 +9,7 @@ from django.db.models import Q
 from mysite.myapp.forms import SearchIsbn
 from django.db.models import Count
 import json
+import csv
 
 class Udc():
     def __init__(self, text):
@@ -62,3 +63,19 @@ def try_udk(request):
     for all in text:
         udk.append (Udc(all))
     return render( request, 'try_udk.html', {'test': test, 'udk': udk}, )
+
+def try_bbk(request):
+    filename = '/home/bookparser/files/bbk_osn.csv'
+    f = open(filename, 'r')
+    reader = csv.reader(f)
+    bbk = []
+    for row in reader:
+        bbk.append(row)
+    f.close()
+
+    return render (request, 'try_bbk.html', {'bbk': bbk}, )
+
+def the_bbk(request, bbk):
+    bbk = "ББК " + bbk
+    books = Book.objects.filter(bbk__startswith=bbk)
+    return render(request, 'the_bbk.html', {'books': books, 'bbk': bbk}, )

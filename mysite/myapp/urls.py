@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^find_duplicates', views.find_duplicates, name='find_duplicates'),
     url(r'^all_udks', views.all_udks, name='all_udks'),
     url(r'^try_udk', udk_views.try_udk, name='try_udk'),
+    url(r'^try_bbk', udk_views.try_bbk, name='try_bbk'),
     # book
     url(r'^(?P<book_id>\d+)/$', views.detail, name='detail'),
     # publisher: ex: /polls/5/results/
@@ -32,6 +33,7 @@ urlpatterns = patterns('',
     url(r'^(?P<one_year>.*)/year/$', views.year, name='year'),
     url(r'^(?P<one_udk>.*)/udk/$', views.udk, name='udk'),
     url(r'^(?P<one_bbk>.*)/bbk/$', views.bbk, name='bbk'),
+    url(r'^(?P<bbk>.*)/the_bbk/$', udk_views.the_bbk, name='the_bbk'),
     url(r'^(?P<one_city>.*)/city_publishers/$', views.city_publishers, name='city_publishers'),
     #url(r'^find_isbn/?isbn=(?P<isbn>.*)$', views.find_isbn, name='find_isbn'),
 )

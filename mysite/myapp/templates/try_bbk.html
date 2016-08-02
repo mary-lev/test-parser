@@ -1,0 +1,19 @@
+{% extends 'ajax.html' %}
+
+{% block body_block %}
+<h3>ББК из списка</h3>
+<ul>
+    {% for all in bbk %}
+        {% if all.0|length == 2 %}
+
+        <b><li>{{all.0}}: {{all.1}}</li></b>
+
+        {% else %}
+
+        <li><a href='/myapp/{{all.0}}/the_bbk'>{{all.0}}: {{all.1}}</a></li>
+
+        {% endif %}
+    {% endfor %}
+</ul>
+
+{% endblock %}

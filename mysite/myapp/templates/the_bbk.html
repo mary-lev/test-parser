@@ -1,0 +1,15 @@
+{% extends 'foot.html' %}
+{% block body_block %}
+
+<h1>{{ bbk }}</h1>
+
+<ul>Книги: {% if books %}
+                {% for b in books %}
+                <li><a href="/myapp/{{ b.id }}/"><b>{{b.bbk}}</b>. {{b.name}}</a></li>
+                {%endfor%}
+                </ul>
+            {% else %}
+                Книжек не нашли.
+            {% endif %}
+
+{% endblock %}
