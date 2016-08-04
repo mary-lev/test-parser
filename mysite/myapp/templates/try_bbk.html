@@ -1,16 +1,16 @@
 {% extends 'ajax.html' %}
 
 {% block body_block %}
-<h3>ББК из списка</h3>
+<h3>ББК</h3>
 <ul>
     {% for all in bbk %}
-        {% if all.0|length == 2 %}
+        {% if all.level <= 2 %}
 
-        <b><li>{{all.0}}: {{all.1}}</li></b>
+        <b><li>{{all.code}}: {{all.text}}</li></b>
 
         {% else %}
 
-        <li><a href='/myapp/{{all.0}}/the_bbk'>{{all.0}}: {{all.1}}</a></li>
+        <li><a href='/myapp/{{all.code}}/the_bbk'>{{all.code}}: {{all.text}}</a></li>
 
         {% endif %}
     {% endfor %}

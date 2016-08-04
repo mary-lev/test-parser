@@ -1,5 +1,5 @@
 from django.contrib import admin
-from mysite.myapp.models import Publisher, Book, Author, Authorship, Printings
+from mysite.myapp.models import Publisher, Book, Author, Authorship, Printings, BBK
 
 class AuthorshipInline(admin.TabularInline):
     model = Authorship
@@ -17,6 +17,10 @@ class PrintingsAdmin(admin.ModelAdmin):
 class AuthorshipAdmin(admin.ModelAdmin):
     model = AuthorshipInline
     pass
+
+class BBKAdmin(admin.ModelAdmin):
+    list_display = ['id', 'code', 'parent', 'text', 'level']
+    ordering = ('code',)
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'get_author', 'year', 'get_publisher', 'pages', 'exem', 'isbn', 'bbk', 'udk', 'full']
@@ -42,3 +46,4 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Authorship, AuthorshipAdmin)
 admin.site.register(Printings, PrintingsAdmin)
+admin.site.register(BBK, BBKAdmin)

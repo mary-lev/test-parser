@@ -8,7 +8,7 @@ from django import forms
 from django.db.models import Q
 from mysite.myapp.forms import SearchIsbn
 from django.db.models import Count
-import json
+import json, re
 
 def index(request):
     all_books = Book.objects.order_by('name')[:10]
@@ -134,6 +134,7 @@ def find_duplicates(request):
     .values('isbn')
     .order_by()
     .exclude(isbn='')
+    .exclude(isbn__iregex=r'^.{0,11}$')
     .filter(count__gt=1)
     )
     books = Book.objects.filter(isbn__in=dups).distinct()

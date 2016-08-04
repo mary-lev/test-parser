@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext, loader
 #from django.http import HttpResponse
 #from django.views.generic import DetailView
-from mysite.myapp.models import Book, Publisher, Author, Authorship, Printings
+from mysite.myapp.models import Book, Publisher, Author, Authorship, Printings, BBK
 from collections import Counter, OrderedDict
 from django import forms
 from django.db.models import Q
@@ -65,14 +65,7 @@ def try_udk(request):
     return render( request, 'try_udk.html', {'test': test, 'udk': udk}, )
 
 def try_bbk(request):
-    filename = '/home/bookparser/files/bbk_osn.csv'
-    f = open(filename, 'r')
-    reader = csv.reader(f)
-    bbk = []
-    for row in reader:
-        bbk.append(row)
-    f.close()
-
+    bbk = BBK.objects.all()
     return render (request, 'try_bbk.html', {'bbk': bbk}, )
 
 def the_bbk(request, bbk):

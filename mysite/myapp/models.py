@@ -15,6 +15,16 @@ class Author(models.Model):
     def __str__(self):
         return self.surname
 
+class BBK(models.Model):
+    code = models.CharField(max_length=100)
+    text = models.CharField(max_length=10000)
+    level = models.IntegerField()
+    parent = models.CharField(max_length=100, blank=True, null=True)
+    sme = models.CharField(max_length=300, blank=True, null=True)
+    stat = models.CharField(max_length=10, blank=True, null=True)
+    def __str__(self):
+        return self.code
+
 class Book(models.Model):
     author = models.ManyToManyField(Author, through='Authorship', null=True, blank=True)
     publisher = models.ManyToManyField(Publisher, through='Printings', null=True, blank=True)
@@ -29,8 +39,13 @@ class Book(models.Model):
     topics = models.CharField(max_length=500, null=True, blank=True)
     exem = models.IntegerField(null=True, blank=True)
     full = models.CharField(max_length=2000)
+    new_bbk = models.ManyToManyField(BBK, through='Bbkship', null=True, blank=True)
     def __str__(self):
         return self.name
+
+class Bbkship(models.Model):
+    book = models.ForeignKey(Book)
+    bbk = models.ForeignKey(BBK)
 
 class Authorship(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
