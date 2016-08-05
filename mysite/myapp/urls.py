@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^all_udks', views.all_udks, name='all_udks'),
     url(r'^try_udk', udk_views.try_udk, name='try_udk'),
     url(r'^try_bbk', udk_views.try_bbk, name='try_bbk'),
+    url(r'^paper', views.paper, name='paper'),
     # book
     url(r'^(?P<book_id>\d+)/$', views.detail, name='detail'),
     # publisher: ex: /polls/5/results/

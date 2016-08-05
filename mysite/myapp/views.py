@@ -5,9 +5,8 @@ from django.template import RequestContext, loader
 from mysite.myapp.models import Book, Publisher, Author, Authorship, Printings
 from collections import Counter, OrderedDict
 from django import forms
-from django.db.models import Q
+from django.db.models import Q, F, Count, Sum, ExpressionWrapper, DecimalField, IntegerField
 from mysite.myapp.forms import SearchIsbn
-from django.db.models import Count
 import json, re
 
 def index(request):
@@ -132,7 +131,7 @@ def find_duplicates(request):
     Book.objects.values('isbn')
     .annotate(count=Count('id'))
     .values('isbn')
-    .order_by()
+    .order_by('isbn')
     .exclude(isbn='')
     .exclude(isbn__iregex=r'^.{0,11}$')
     .filter(count__gt=1)
@@ -189,3 +188,8 @@ def udk(request, one_udk):
     except:
         context =  RequestContext(request, { 'one_udk': None, })
     return render( request, 'udk.html', context )
+
+def paper(request):
+    books = Book.objects.all().annotate(paper=Sum(F('exem')*F('pages'))).annotate(trees=Sum(F('exem')*F('pages')/3400)).order_by('-paper')
+    template = 'paper.html'
+    return render(request, template, {'books': books[:100]} )

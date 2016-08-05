@@ -69,6 +69,7 @@ def try_bbk(request):
     return render (request, 'try_bbk.html', {'bbk': bbk}, )
 
 def the_bbk(request, bbk):
+    b = BBK.objects.filter(code=bbk)
     bbk = "ББК " + bbk
     books = Book.objects.filter(bbk__startswith=bbk)
-    return render(request, 'the_bbk.html', {'books': books, 'bbk': bbk}, )
+    return render(request, 'the_bbk.html', {'books': books, 'bbk': bbk, 'b': b}, )

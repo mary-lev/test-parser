@@ -2,7 +2,9 @@
 {% block body_block %}
 
 <h1>{{ bbk }}</h1>
-
+{% for all in b %}
+{{all.code}} {{all.text}}
+{% endfor %}
 <ul>Книги: {% if books %}
                 {% for b in books %}
                 <li><a href="/myapp/{{ b.id }}/"><b>{{b.bbk}}</b>. {{b.name}}</a></li>

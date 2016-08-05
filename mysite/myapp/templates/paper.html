@@ -1,0 +1,35 @@
+{% extends 'foot.html' %}
+{% block body_block %}
+
+<h1>Книги, на которые ушло больше всего бумаги</h1>
+
+
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>Книга</th>
+        <th>Объем, стр.</th>
+        <th>Тираж</th>
+        <th>Листы бумаги</th>
+        <th>Деревья</th>
+    </tr>
+</thead>
+
+{% for b in books.all %}
+<tbody><tr>
+    <td><a href="/myapp/{{ b.id }}/">{{b.name}}</a>.
+    {% for p in b.author.all %}
+        {{p.surname}}
+    {%endfor%}    ({{b.year}})</td>
+    <td>{{b.pages}}</td>
+    <td>{{b.exem}}</td>
+    <td>{{b.paper}}</b></td>
+    <td>{{b.trees}}</td>
+    </tr>
+
+    {%endfor%}
+
+<tbody></table>
+
+
+{% endblock %}
