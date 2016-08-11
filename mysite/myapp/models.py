@@ -1,4 +1,5 @@
 from django.db import models
+from mptt.models import MPTTModel, TreeForeignKey
 
 class Publisher(models.Model):
     city = models.CharField(max_length=50, null=True, blank=True)
@@ -20,6 +21,16 @@ class BBK(models.Model):
     text = models.CharField(max_length=10000)
     level = models.IntegerField()
     parent = models.CharField(max_length=100, blank=True, null=True)
+    sme = models.CharField(max_length=300, blank=True, null=True)
+    stat = models.CharField(max_length=10, blank=True, null=True)
+    def __str__(self):
+        return self.code
+
+class BBKnew(models.Model):
+    code = models.CharField(max_length=100)
+    text = models.CharField(max_length=500)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children')
+    level = models.IntegerField()
     sme = models.CharField(max_length=300, blank=True, null=True)
     stat = models.CharField(max_length=10, blank=True, null=True)
     def __str__(self):

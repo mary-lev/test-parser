@@ -65,7 +65,7 @@ def try_udk(request):
     return render( request, 'try_udk.html', {'test': test, 'udk': udk}, )
 
 def try_bbk(request):
-    bbk = BBK.objects.all()
+    bbk = BBK.objects.filter(Q(level=1)|Q(level=2))
     return render (request, 'try_bbk.html', {'bbk': bbk}, )
 
 def the_bbk(request, bbk):

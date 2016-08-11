@@ -6,13 +6,13 @@
 <ul>
     {% for all in bbk %}
         {% if all.level <= 2 %}
-
+<div class='test'>
         <b><li>{{all.code}}: {{all.text}}</li></b>
-
+</div>
         {% else %}
-
+<div class='content_p'>
         <li><a href='/myapp/{{all.code}}/the_bbk'>{{all.code}}: {{all.text}}</a></li>
-
+</div>
         {% endif %}
     {% endfor %}
 </ul>
